@@ -5,11 +5,13 @@ RUN apt-get install -yq ruby ruby-dev build-essential nodejs rsync git openssh-c
 
 # installs bundler
 RUN gem install --no-ri --no-rdoc bundler
-ADD slate/Gemfile /app/Gemfile
-ADD slate/Gemfile.lock /app/Gemfile.lock
+ADD slate/ /app
 RUN cd /app; bundle install
-
+EXPOSE 4567
 WORKDIR /app
+
+ONBUILD RUN rm -fr /app/source
+
 
 CMD ["/bin/bash"]
 ENTRYPOINT []
