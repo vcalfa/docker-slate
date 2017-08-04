@@ -10,8 +10,10 @@ RUN cd /app; bundle install
 EXPOSE 4567
 WORKDIR /app
 
-ONBUILD RUN rm -fr /app/source
-
+# ONBUILD RUN rm -fr /app/source
+ONBUILD RUN rm -f /app/source/index.html.md
+ONBUILD RUN rm -f /app/source/images/logo.png
+ONBUILD RUN rm -f /app/source/includes/_errors.md
 
 CMD ["/bin/bash"]
 ENTRYPOINT []
